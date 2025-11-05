@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b14d885447fb4fa68fe795ca383b58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   moveDirection: {x: 0, y: 0, z: 1}
   minMoveSpeed: 9.5
   maxMoveSpeed: 10.5
@@ -147,12 +148,6 @@ MonoBehaviour:
   disableOnFinish: 1
   useDeceleration: 1
   decelerationDuration: 2
-  onFinishReached:
-    m_PersistentCalls:
-      m_Calls: []
-  onCharacterStopped:
-    m_PersistentCalls:
-      m_Calls: []
   characterMover: {fileID: 588386563770296745}
 --- !u!54 &7472684071945484187
 Rigidbody:
