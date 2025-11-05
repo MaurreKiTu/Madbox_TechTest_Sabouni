@@ -1,0 +1,111 @@
+using UnityEngine;
+
+public class CharacterBoxingGloves : CharacterAbility
+{
+    [Header("Boxing Settings")]
+    [SerializeField] private GameObject gloves;
+    [SerializeField] private BoxCollider punchTrigger;
+    
+    [Header("Animation")]
+    [SerializeField] private string punchAnimationTrigger = "Punch";
+    
+    [Header("Ejection Settings")]
+    [SerializeField] private float ejectionForce = 20f;
+    [SerializeField] private float upwardForce = 10f;
+    
+    private Animator _animator;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        _animator = GetComponent<Animator>();
+        
+        if (gloves != null)
+        {
+            gloves.SetActive(false);
+        }
+        
+        if (punchTrigger != null)
+        {
+            DisablePunchTrigger();
+        }
+    }
+
+    protected override void OnAbilityStart()
+    {
+        ShowGloves();
+        EnablePunchTrigger();
+    }
+
+    protected override void OnAbilityEnd()
+    {
+        HideGloves();
+        DisablePunchTrigger();
+    }
+
+    private void ShowGloves()
+    {
+        if (gloves != null)
+        {
+            gloves.SetActive(true);
+        }
+    }
+
+    private void HideGloves()
+    {
+        if (gloves != null)
+        {
+            gloves.SetActive(false);
+        }
+    }
+
+    private void EnablePunchTrigger()
+    {
+        if (punchTrigger != null)
+        {
+            punchTrigger.enabled = true;
+        }
+    }
+
+    private void DisablePunchTrigger()
+    {
+        if (punchTrigger != null)
+        {
+            punchTrigger.enabled = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!_isActive) return;
+        
+        CharacterMover otherCharacter = other.GetComponent<CharacterMover>();
+        if (otherCharacter != null && otherCharacter != _characterMover)
+        {
+            TriggerPunchAnimation();
+            EjectCharacter(other.gameObject);
+        }
+    }
+    
+    private void EjectCharacter(GameObject target)
+    {
+        CharacterEjection ejection = target.GetComponent<CharacterEjection>();
+        if (ejection == null)
+        {
+            ejection = target.AddComponent<CharacterEjection>();
+        }
+        
+        Vector3 ejectionDirection = (target.transform.position - transform.position).normalized;
+        ejection.Eject(ejectionDirection, ejectionForce, upwardForce);
+    }
+
+    private void TriggerPunchAnimation()
+    {
+        if (_animator != null)
+        {
+            _animator.SetTrigger(punchAnimationTrigger);
+        }
+    }
+}
+
