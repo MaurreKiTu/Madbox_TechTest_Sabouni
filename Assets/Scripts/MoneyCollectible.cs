@@ -6,10 +6,18 @@ public class MoneyCollectible : MonoBehaviour
     [SerializeField] private int moneyValue = 10;
     [SerializeField] private bool destroyOnCollect = true;
     
+    [Header("Rotation Settings")]
+    [SerializeField] private float rotationSpeed = 100f;
+    
     [Header("VFX")]
     [SerializeField] private ParticleSystem collectFX;
     
     private bool _hasBeenCollected;
+
+    private void Update()
+    {
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
