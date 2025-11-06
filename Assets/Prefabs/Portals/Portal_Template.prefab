@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4127239792564811144}
   - component: {fileID: 2941161708052674399}
   m_Layer: 0
-  m_Name: SpeedPortal
+  m_Name: Portal_Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
