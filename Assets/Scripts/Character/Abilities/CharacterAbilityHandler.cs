@@ -2,12 +2,6 @@ using UnityEngine;
 
 public class CharacterAbilityHandler : MonoBehaviour
 {
-    private CharacterMover _characterMover;
-    
-    private void Awake()
-    {
-        _characterMover = GetComponent<CharacterMover>();
-    }
 
     public void ActivateSpeedBoost(float speedMultiplier, float duration)
     {
@@ -29,9 +23,5 @@ public class CharacterAbilityHandler : MonoBehaviour
         boxingGloves.Activate(duration);
     }
 
-    public CharacterMover GetCharacterMover()
-    {
-        return _characterMover;
-    }
 }
 

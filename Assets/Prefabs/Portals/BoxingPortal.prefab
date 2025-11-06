@@ -151,5 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deactivateAfterUse: 0
+  cost: 20
   activationFX: {fileID: 0}
+  insufficientFundsFX: {fileID: 0}
   duration: 5

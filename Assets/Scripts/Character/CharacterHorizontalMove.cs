@@ -49,3 +49,4 @@ public class CharacterHorizontalMove : MonoBehaviour
     }
 }
 
+

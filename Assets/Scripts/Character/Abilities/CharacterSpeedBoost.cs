@@ -34,7 +34,7 @@ public class CharacterSpeedBoost : CharacterAbility
         {
             _characterMover.SetMoveSpeed(_originalSpeed);
         }
-        
+        ;
         StopVFX();
     }
 

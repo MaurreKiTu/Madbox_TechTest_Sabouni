@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 6361586145091801508}
   - component: {fileID: 2149588725948349819}
   - component: {fileID: -7407658772305478533}
+  - component: {fileID: -2626768555291167966}
   m_Layer: 0
   m_Name: ChampController
   m_TagString: Untagged
@@ -272,7 +273,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ejectionTrail: {fileID: 0}
-  rigidBody: {fileID: 0}
+--- !u!114 &-2626768555291167966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010998766800761894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7157dae0051beeb40ac4ef5e3bb56e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingCurrency: 0
+  OnCurrencyChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2747889912803971918
 GameObject:
   m_ObjectHideFlags: 0
