@@ -34,6 +34,11 @@ public class MoneyCollectible : MonoBehaviour
     {
         _hasBeenCollected = true;
         
+        if (currency.IsPlayer)
+        {
+            CoinFlyManager.SpawnFlyingCoin(transform.position, moneyValue);
+        }
+        
         currency.AddCurrency(moneyValue);
         
         PlayCollectFX();

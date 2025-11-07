@@ -946,8 +946,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 170, y: 0}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: 198, y: 0}
+  m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &282289613
 MonoBehaviour:
@@ -2224,6 +2224,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6274817413080327718, guid: eda67bdff48d64147a7b37423a9917e8, type: 3}
   m_PrefabInstance: {fileID: 717900876}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &754044649
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 754044650}
+  - component: {fileID: 754044651}
+  m_Layer: 0
+  m_Name: FlyingCoinManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &754044650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754044649}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1145186153}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &754044651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754044649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3400a128cf65de34da99648b7aee8020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinFlyingPrefab: {fileID: 6050763275228813558, guid: adfe2ff689bae9a428438201b78d9ac0, type: 3}
+  currencyUITarget: {fileID: 398326931}
+  canvas: {fileID: 2119558353}
 --- !u!1001 &780993316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2950,6 +2997,7 @@ Transform:
   - {fileID: 110091546}
   - {fileID: 893360386}
   - {fileID: 563382337}
+  - {fileID: 754044650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1174745845
