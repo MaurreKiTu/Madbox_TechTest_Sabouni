@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3329599651517867383, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
       propertyPath: m_Name
-      value: Portal_Template
+      value: Portal_Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810324000993023011, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.70000005
       objectReference: {fileID: 0}
     - target: {fileID: 8201958476776214732, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -51,6 +55,14 @@ PrefabInstance:
     - target: {fileID: 8201958476776214732, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8619825146153064452, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f4acb5f75ac497d4eba20e263c647f24, type: 3}
+    - target: {fileID: 8619825146153064452, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

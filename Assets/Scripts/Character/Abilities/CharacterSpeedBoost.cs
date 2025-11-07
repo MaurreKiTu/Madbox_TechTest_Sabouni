@@ -3,8 +3,7 @@ using UnityEngine;
 public class CharacterSpeedBoost : CharacterAbility
 {
     [Header("VFX References")]
-    [SerializeField] private ParticleSystem speedTrailFX;
-    [SerializeField] private ParticleSystem speedBoostFX;
+    [SerializeField] private ParticleSystem[] speedVFX;
     
     [Header("Speed Settings")]
     [SerializeField] private float speedMultiplier = 2f;
@@ -34,33 +33,33 @@ public class CharacterSpeedBoost : CharacterAbility
         {
             _characterMover.SetMoveSpeed(_originalSpeed);
         }
-        ;
+        
         StopVFX();
     }
 
     private void PlayVFX()
     {
-        if (speedTrailFX != null)
-        {
-            speedTrailFX.Play();
-        }
+        if (speedVFX == null) return;
         
-        if (speedBoostFX != null)
+        foreach (var fx in speedVFX)
         {
-            speedBoostFX.Play();
+            if (fx != null)
+            {
+                fx.Play();
+            }
         }
     }
 
     private void StopVFX()
     {
-        if (speedTrailFX != null)
-        {
-            speedTrailFX.Stop();
-        }
+        if (speedVFX == null) return;
         
-        if (speedBoostFX != null)
+        foreach (var fx in speedVFX)
         {
-            speedBoostFX.Stop();
+            if (fx != null)
+            {
+                fx.Stop();
+            }
         }
     }
 }
