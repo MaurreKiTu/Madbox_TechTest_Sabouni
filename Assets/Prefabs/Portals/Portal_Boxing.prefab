@@ -69,6 +69,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2410052956173678669}
   m_SourcePrefab: {fileID: 100100000, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
+--- !u!198 &4157995397841628474 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8000558016947597637, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
+  m_PrefabInstance: {fileID: 6247508530557852799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8684777183499204872 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3329599651517867383, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
@@ -88,6 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deactivateAfterUse: 0
   cost: 0
-  activationFX: {fileID: 0}
+  activationFX: {fileID: 4157995397841628474}
   insufficientFundsFX: {fileID: 0}
+  costIndicatorPrefab: {fileID: 1560332299848948686, guid: 7b5f25556605584488a140db687ed206, type: 3}
+  uiCanvas: {fileID: 0}
   duration: 5

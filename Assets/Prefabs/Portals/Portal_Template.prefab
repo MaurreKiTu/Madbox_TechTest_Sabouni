@@ -318,6 +318,8 @@ MonoBehaviour:
   cost: 15
   activationFX: {fileID: 8000558016947597637}
   insufficientFundsFX: {fileID: 0}
+  costIndicatorPrefab: {fileID: 1560332299848948686, guid: 7b5f25556605584488a140db687ed206, type: 3}
+  portalCanvas: {fileID: 5365204188911121029}
   speedMultiplier: 2
   duration: 3
 --- !u!1 &3591206032786740176

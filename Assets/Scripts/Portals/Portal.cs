@@ -10,6 +10,10 @@ public abstract class Portal : MonoBehaviour
     [SerializeField] private ParticleSystem activationFX;
     [SerializeField] private ParticleSystem insufficientFundsFX;
     
+    [Header("Cost Indicator")]
+    [SerializeField] private GameObject costIndicatorPrefab;
+    [SerializeField] private Canvas uiCanvas;
+    
     private bool _hasBeenUsed;
 
     public int Cost => cost;
@@ -32,6 +36,11 @@ public abstract class Portal : MonoBehaviour
                 }
                 
                 currency.SpendCurrency(cost);
+                
+                if (currency.IsPlayer)
+                {
+                    ShowCostIndicator(other.transform.position);
+                }
             }
             
             ActivatePortal(abilityHandler);
@@ -59,6 +68,26 @@ public abstract class Portal : MonoBehaviour
         if (insufficientFundsFX != null)
         {
             insufficientFundsFX.Play();
+        }
+    }
+
+    private void ShowCostIndicator(Vector3 playerPosition)
+    {
+        if (costIndicatorPrefab == null) return;
+        
+        if (uiCanvas == null)
+        {
+            uiCanvas = FindObjectOfType<Canvas>();
+        }
+        
+        if (uiCanvas == null) return;
+        
+        GameObject indicatorObj = Instantiate(costIndicatorPrefab, uiCanvas.transform);
+        PortalCostIndicatorUI indicator = indicatorObj.GetComponent<PortalCostIndicatorUI>();
+        
+        if (indicator != null)
+        {
+            indicator.ShowCost(playerPosition, cost);
         }
     }
 
