@@ -3,7 +3,8 @@ using UnityEngine;
 public class CharacterBoxingGloves : CharacterAbility
 {
     [Header("Boxing Settings")]
-    [SerializeField] private GameObject gloves;
+    [SerializeField] private GameObject leftGlove;
+    [SerializeField] private GameObject rightGlove;
     [SerializeField] private BoxCollider punchTrigger;
     
     [Header("Animation")]
@@ -21,9 +22,14 @@ public class CharacterBoxingGloves : CharacterAbility
         
         _animator = GetComponent<Animator>();
         
-        if (gloves != null)
+        if (leftGlove != null)
         {
-            gloves.SetActive(false);
+            leftGlove.SetActive(false);
+        }
+        
+        if (rightGlove != null)
+        {
+            rightGlove.SetActive(false);
         }
         
         if (punchTrigger != null)
@@ -46,17 +52,27 @@ public class CharacterBoxingGloves : CharacterAbility
 
     private void ShowGloves()
     {
-        if (gloves != null)
+        if (leftGlove != null)
         {
-            gloves.SetActive(true);
+            leftGlove.SetActive(true);
+        }
+        
+        if (rightGlove != null)
+        {
+            rightGlove.SetActive(true);
         }
     }
 
     private void HideGloves()
     {
-        if (gloves != null)
+        if (leftGlove != null)
         {
-            gloves.SetActive(false);
+            leftGlove.SetActive(false);
+        }
+        
+        if (rightGlove != null)
+        {
+            rightGlove.SetActive(false);
         }
     }
 
