@@ -3880,7 +3880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2410052956173678669, guid: 82b953a0ade61e44eae500c74bc46082, type: 3}
       propertyPath: cost
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2410052956173678669, guid: 82b953a0ade61e44eae500c74bc46082, type: 3}
       propertyPath: uiCanvas
@@ -3896,7 +3896,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2837459283101060275, guid: 82b953a0ade61e44eae500c74bc46082, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 44.52
+      value: 20.05
       objectReference: {fileID: 0}
     - target: {fileID: 2837459283101060275, guid: 82b953a0ade61e44eae500c74bc46082, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4335,7 +4335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2837459283101060275, guid: 75e7413fceaf56d4c9d5acdc975365a2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.15
+      value: 28.68
       objectReference: {fileID: 0}
     - target: {fileID: 2837459283101060275, guid: 75e7413fceaf56d4c9d5acdc975365a2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4371,7 +4371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9106983327791475488, guid: 75e7413fceaf56d4c9d5acdc975365a2, type: 3}
       propertyPath: cost
-      value: 35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9106983327791475488, guid: 75e7413fceaf56d4c9d5acdc975365a2, type: 3}
       propertyPath: uiCanvas

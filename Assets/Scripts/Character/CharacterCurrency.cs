@@ -44,3 +44,5 @@ public class CharacterCurrency : MonoBehaviour
 }
 
 
+
+

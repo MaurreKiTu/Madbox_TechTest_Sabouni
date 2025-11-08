@@ -14,6 +14,9 @@ public class CharacterBoxingGloves : CharacterAbility
     [SerializeField] private float ejectionForce = 20f;
     [SerializeField] private float upwardForce = 10f;
     
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem hitVFX;
+    
     private Animator _animator;
 
     protected override void Awake()
@@ -106,6 +109,14 @@ public class CharacterBoxingGloves : CharacterAbility
     
     private void EjectCharacter(GameObject target)
     {
+        CharacterPunchAnimation punchAnimation = GetComponent<CharacterPunchAnimation>();
+        if (punchAnimation != null)
+        {
+            punchAnimation.TriggerPunchAnimation();
+        }
+        
+        PlayHitVFX(target.transform.position);
+        
         CharacterEjection ejection = target.GetComponent<CharacterEjection>();
         if (ejection == null)
         {
@@ -114,6 +125,16 @@ public class CharacterBoxingGloves : CharacterAbility
         
         Vector3 ejectionDirection = (target.transform.position - transform.position).normalized;
         ejection.Eject(ejectionDirection, ejectionForce, upwardForce);
+    }
+
+    private void PlayHitVFX(Vector3 hitPosition)
+    {
+        if (hitVFX != null)
+        {
+            ParticleSystem vfx = Instantiate(hitVFX, hitPosition, Quaternion.identity);
+            vfx.Play();
+            Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax);
+        }
     }
 
     private void TriggerPunchAnimation()
