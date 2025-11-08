@@ -15,7 +15,7 @@ public class CharacterBoxingGloves : CharacterAbility
     [SerializeField] private float upwardForce = 10f;
     
     [Header("VFX")]
-    [SerializeField] private ParticleSystem hitVFX;
+    [SerializeField] private ParticleSystem[] hitVFX;
     
     private Animator _animator;
 
@@ -109,6 +109,9 @@ public class CharacterBoxingGloves : CharacterAbility
     
     private void EjectCharacter(GameObject target)
     {
+        CharacterMover targetMover = target.GetComponent<CharacterMover>();
+        bool isPlayerHit = targetMover != null && targetMover.IsPlayer;
+        
         CharacterPunchAnimation punchAnimation = GetComponent<CharacterPunchAnimation>();
         if (punchAnimation != null)
         {
@@ -116,6 +119,17 @@ public class CharacterBoxingGloves : CharacterAbility
         }
         
         PlayHitVFX(target.transform.position);
+        
+        if (isPlayerHit)
+        {
+            CharacterDefeat defeat = target.GetComponent<CharacterDefeat>();
+            if (defeat == null)
+            {
+                defeat = target.AddComponent<CharacterDefeat>();
+            }
+            defeat.TriggerDefeat();
+            return;
+        }
         
         CharacterEjection ejection = target.GetComponent<CharacterEjection>();
         if (ejection == null)
@@ -129,11 +143,16 @@ public class CharacterBoxingGloves : CharacterAbility
 
     private void PlayHitVFX(Vector3 hitPosition)
     {
-        if (hitVFX != null)
+        if (hitVFX == null) return;
+        
+        foreach (var fx in hitVFX)
         {
-            ParticleSystem vfx = Instantiate(hitVFX, hitPosition, Quaternion.identity);
-            vfx.Play();
-            Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax);
+            if (fx != null)
+            {
+                ParticleSystem vfx = Instantiate(fx, hitPosition, fx.transform.rotation);
+                vfx.Play();
+                Destroy(vfx.gameObject, vfx.main.duration + vfx.main.startLifetime.constantMax);
+            }
         }
     }
 

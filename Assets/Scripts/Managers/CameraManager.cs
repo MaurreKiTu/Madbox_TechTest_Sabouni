@@ -6,7 +6,8 @@ using Cinemachine;
 public enum CameraType
 {
     Main,
-    Race
+    Race,
+    Ending
 }
 
 public class CameraManager : MonoBehaviour
