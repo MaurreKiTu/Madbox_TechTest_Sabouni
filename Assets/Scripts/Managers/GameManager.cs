@@ -18,12 +18,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEvent<int> onCountdownTick;
     [SerializeField] private UnityEvent<CharacterMover, int> onPlayerFinish;
     [SerializeField] private UnityEvent onCountdownComplete;
+    [SerializeField] private UnityEvent onPlayerDefeated;
     
     // Public events for external subscription
     public UnityEvent OnGameStart => onGameStart;
     public UnityEvent<int> OnCountdownTick => onCountdownTick;
     public UnityEvent OnCountdownComplete => onCountdownComplete;
     public UnityEvent<CharacterMover, int> OnPlayerFinish => onPlayerFinish;
+    public UnityEvent OnPlayerDefeated => onPlayerDefeated;
     
     private bool _gameStarted = false;
     private bool _countdownActive = false;

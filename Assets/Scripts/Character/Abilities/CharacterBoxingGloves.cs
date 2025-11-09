@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CharacterBoxingGloves : CharacterAbility
 {
@@ -10,14 +11,12 @@ public class CharacterBoxingGloves : CharacterAbility
     [Header("Animation")]
     [SerializeField] private string punchAnimationTrigger = "Punch";
     
-    [Header("Ejection Settings")]
-    [SerializeField] private float ejectionForce = 20f;
-    [SerializeField] private float upwardForce = 10f;
-    
     [Header("VFX")]
     [SerializeField] private ParticleSystem[] hitVFX;
+    [SerializeField] private ParticleSystem[] punchVFX;
     
     private Animator _animator;
+    private HashSet<CharacterMover> _hitCharacters = new HashSet<CharacterMover>();
 
     protected override void Awake()
     {
@@ -51,6 +50,7 @@ public class CharacterBoxingGloves : CharacterAbility
     {
         HideGloves();
         DisablePunchTrigger();
+        _hitCharacters.Clear();
     }
 
     private void ShowGloves()
@@ -102,6 +102,13 @@ public class CharacterBoxingGloves : CharacterAbility
         CharacterMover otherCharacter = other.GetComponent<CharacterMover>();
         if (otherCharacter != null && otherCharacter != _characterMover)
         {
+            if (_hitCharacters.Contains(otherCharacter))
+            {
+                return;
+            }
+            
+            _hitCharacters.Add(otherCharacter);
+            
             TriggerPunchAnimation();
             EjectCharacter(other.gameObject);
         }
@@ -109,36 +116,34 @@ public class CharacterBoxingGloves : CharacterAbility
     
     private void EjectCharacter(GameObject target)
     {
-        CharacterMover targetMover = target.GetComponent<CharacterMover>();
-        bool isPlayerHit = targetMover != null && targetMover.IsPlayer;
-        
         CharacterPunchAnimation punchAnimation = GetComponent<CharacterPunchAnimation>();
         if (punchAnimation != null)
         {
             punchAnimation.TriggerPunchAnimation();
         }
         
+        PlayPunchVFX();
         PlayHitVFX(target.transform.position);
         
-        if (isPlayerHit)
+        CharacterDefeat defeat = target.GetComponent<CharacterDefeat>();
+        if (defeat == null)
         {
-            CharacterDefeat defeat = target.GetComponent<CharacterDefeat>();
-            if (defeat == null)
+            defeat = target.AddComponent<CharacterDefeat>();
+        }
+        defeat.TriggerDefeat();
+    }
+
+    private void PlayPunchVFX()
+    {
+        if (punchVFX == null) return;
+        
+        foreach (var fx in punchVFX)
+        {
+            if (fx != null)
             {
-                defeat = target.AddComponent<CharacterDefeat>();
+                fx.Play();
             }
-            defeat.TriggerDefeat();
-            return;
         }
-        
-        CharacterEjection ejection = target.GetComponent<CharacterEjection>();
-        if (ejection == null)
-        {
-            ejection = target.AddComponent<CharacterEjection>();
-        }
-        
-        Vector3 ejectionDirection = (target.transform.position - transform.position).normalized;
-        ejection.Eject(ejectionDirection, ejectionForce, upwardForce);
     }
 
     private void PlayHitVFX(Vector3 hitPosition)

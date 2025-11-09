@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class CharacterDefeat : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CharacterDefeat : MonoBehaviour
     
     [Header("Camera Rotation")]
     [SerializeField] private float targetYRotation = 310f;
+    
+    [Header("Camera Transition")]
+    [SerializeField] private float uiDelayAfterCameraSwitch = 1f;
     
     [Header("VFX")]
     [SerializeField] private ParticleSystem[] loseVFX;
@@ -45,6 +49,8 @@ public class CharacterDefeat : MonoBehaviour
             cameraManager.SwitchCamera(CameraType.Ending);
         }
         
+        StartCoroutine(ShowGameOverAfterDelay());
+        
         StopAllAbilities();
         
         if (_characterMover != null)
@@ -55,6 +61,17 @@ public class CharacterDefeat : MonoBehaviour
         RotateToCamera();
         PlayLoseVFX();
         PlayLoseAnimation();
+    }
+
+    private IEnumerator ShowGameOverAfterDelay()
+    {
+        yield return new WaitForSeconds(uiDelayAfterCameraSwitch);
+        
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if (gameManager != null)
+        {
+            gameManager.OnPlayerDefeated.Invoke();
+        }
     }
 
     private void RotateToCamera()
@@ -73,8 +90,7 @@ public class CharacterDefeat : MonoBehaviour
         {
             if (fx != null)
             {
-                ParticleSystem vfx = Instantiate(fx, transform.position, Quaternion.identity);
-                vfx.Play();
+                fx.Play();
             }
         }
     }
