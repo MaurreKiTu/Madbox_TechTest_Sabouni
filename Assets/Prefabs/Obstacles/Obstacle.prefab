@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.6887754, y: 1, z: 1}
+  m_Center: {x: -0.04531306, y: 0, z: 0}
 --- !u!114 &8602378891220080980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d40d3f1a58bc954b8dd6d38a4456f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowDuration: 1.5
+  slowDuration: 1
   affectPlayerOnly: 0
   hitFX: {fileID: 5355996743439324409}
 --- !u!1001 &8953102583247927870
