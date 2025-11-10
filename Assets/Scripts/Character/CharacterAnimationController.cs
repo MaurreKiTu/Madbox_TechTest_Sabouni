@@ -5,11 +5,17 @@ using UnityEngine;
 public class CharacterAnimationController : MonoBehaviour
 {
     [Header("Animation Settings")]
-    [SerializeField] private Animator animator; // Reference to the Animator component
-    [SerializeField] private float runThreshold = 0.1f; // Speed threshold to trigger run animation
+    [SerializeField] private Animator animator;
+    [SerializeField] private float runThreshold = 0.1f;
     
     [Header("References")]
-    [SerializeField] private CharacterMover characterMover; // Reference to the CharacterMover component
+    [SerializeField] private CharacterMover characterMover;
+    
+    [Header("Animation Speed Settings")]
+    [SerializeField] private bool adaptAnimationSpeed = true;
+    [SerializeField] private float normalSpeed = 5f;
+    [SerializeField] private float minAnimationSpeed = 0.3f;
+    [SerializeField] private float maxAnimationSpeed = 2f;
     
     private const string RUN_BOOLEAN = "Run";
     
@@ -29,6 +35,11 @@ public class CharacterAnimationController : MonoBehaviour
         {
             animator.SetBool(RUN_BOOLEAN, false);
         }
+        
+        if (characterMover != null && normalSpeed <= 0)
+        {
+            normalSpeed = characterMover.GetMoveSpeed();
+        }
     }
     
     void LateUpdate()
@@ -39,9 +50,18 @@ public class CharacterAnimationController : MonoBehaviour
     
     private void UpdateAnimation()
     {
-        if (animator == null) return;
+        if (animator == null || characterMover == null) return;
         
-        animator.SetBool(RUN_BOOLEAN, characterMover.MoveSpeed > runThreshold);
+        float currentSpeed = characterMover.MoveSpeed;
+        
+        animator.SetBool(RUN_BOOLEAN, currentSpeed > runThreshold);
+        
+        if (adaptAnimationSpeed && normalSpeed > 0)
+        {
+            float speedRatio = currentSpeed / normalSpeed;
+            float animSpeed = Mathf.Clamp(speedRatio, minAnimationSpeed, maxAnimationSpeed);
+            animator.speed = animSpeed;
+        }
     }
   
 }
