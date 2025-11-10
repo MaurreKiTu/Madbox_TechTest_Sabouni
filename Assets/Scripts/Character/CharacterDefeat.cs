@@ -19,6 +19,12 @@ public class CharacterDefeat : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private ParticleSystem[] loseVFX;
     
+    [Header("Music Transition")]
+    [SerializeField] private float raceMusicFadeOutDuration = 0.3f;
+    [SerializeField] private float gameOverMusicStartTime = 0f;
+    [SerializeField] private float gameOverMusicFadeInDuration = 2.5f;
+    [SerializeField] private float delayBeforeGameOverMusic = 0.5f;
+    
     private CharacterMover _characterMover;
     private bool _isDefeated;
 
@@ -49,6 +55,8 @@ public class CharacterDefeat : MonoBehaviour
             cameraManager.SwitchCamera(CameraType.Ending);
         }
         
+        HandleMusicTransition();
+        
         StartCoroutine(ShowGameOverAfterDelay());
         
         StopAllAbilities();
@@ -72,6 +80,18 @@ public class CharacterDefeat : MonoBehaviour
         {
             gameManager.OnPlayerDefeated.Invoke();
         }
+    }
+
+    private void HandleMusicTransition()
+    {
+        SoundManager.FadeOutMusic(raceMusicFadeOutDuration, true);
+        StartCoroutine(PlayGameOverMusicDelayed());
+    }
+
+    private IEnumerator PlayGameOverMusicDelayed()
+    {
+        yield return new WaitForSeconds(raceMusicFadeOutDuration + delayBeforeGameOverMusic);
+        SoundManager.PlayMusic(MusicType.GameOver, gameOverMusicStartTime, gameOverMusicFadeInDuration);
     }
 
     private void RotateToCamera()

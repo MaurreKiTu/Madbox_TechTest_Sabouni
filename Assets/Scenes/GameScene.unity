@@ -235,8 +235,12 @@ MonoBehaviour:
   portalNotEnoughSound: {fileID: 8300000, guid: 51e15659eb57ecc40a5d21fdbcc0a12f, type: 3}
   nopeSound: {fileID: 8300000, guid: f923deced9aff454889a224e99526532, type: 3}
   scratchSound: {fileID: 8300000, guid: 0ec01839a44a9a044872506039c561ce, type: 3}
+  raceMusic: {fileID: 8300000, guid: d875910c827d33842bdcbe5e09de5054, type: 3}
+  gameOverMusic: {fileID: 8300000, guid: 358a7212bc8ca154c9d55003875efb9f, type: 3}
   masterVolume: 1
   sfxVolume: 1
+  musicVolume: 0.7
+  defaultFadeDuration: 1
 --- !u!1001 &41068760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6158,7 +6162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e82727dfd9b3134b8900993713066a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2
   minX: -5
   maxX: 5
   inputManager: {fileID: 0}
@@ -6181,6 +6185,10 @@ MonoBehaviour:
   loseVFX:
   - {fileID: 5465540807237678854}
   - {fileID: 5465540807237678853}
+  raceMusicFadeOutDuration: 0.3
+  gameOverMusicStartTime: 0
+  gameOverMusicFadeInDuration: 2.5
+  delayBeforeGameOverMusic: 0.5
 --- !u!1 &1860209493
 GameObject:
   m_ObjectHideFlags: 3
@@ -7375,6 +7383,14 @@ PrefabInstance:
     - target: {fileID: 588386563770296745, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
       propertyPath: isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 588386563770296745, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
+      propertyPath: maxMoveSpeed
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 588386563770296745, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
+      propertyPath: minMoveSpeed
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 2010998766800761894, guid: 0e42b8b79e60140b3a91faae5cb450a4, type: 3}
       propertyPath: m_Name

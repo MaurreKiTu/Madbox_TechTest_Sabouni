@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         if (_gameStarted || _countdownActive) return;
-        
+        SoundManager.PlayMusic(MusicType.Race, 48f, 2f);
         _countdownActive = true;
         _countdownCoroutine = StartCoroutine(CountdownCoroutine());
     }
