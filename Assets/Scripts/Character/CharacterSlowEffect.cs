@@ -43,6 +43,11 @@ public class CharacterSlowEffect : MonoBehaviour
         _originalSpeed = _characterMover.GetMoveSpeed();
         _characterMover.SetMoveSpeed(_originalSpeed * slowSpeedMultiplier);
         
+        if (_characterMover.IsPlayer)
+        {
+            SoundManager.PlaySound(SoundType.Slowed);
+        }
+        
         PlaySlowVFX();
         
         yield return new WaitForSeconds(duration);

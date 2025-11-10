@@ -114,11 +114,11 @@ public class CharacterBoxingGloves : CharacterAbility
             _hitCharacters.Add(otherCharacter);
             
             TriggerPunchAnimation();
-            EjectCharacter(other.gameObject);
+            PunchCharacter(other.gameObject);
         }
     }
     
-    private void EjectCharacter(GameObject target)
+    private void PunchCharacter(GameObject target)
     {
         CharacterPunchAnimation punchAnimation = GetComponent<CharacterPunchAnimation>();
         if (punchAnimation != null)
@@ -129,6 +129,10 @@ public class CharacterBoxingGloves : CharacterAbility
         PlayPunchVFX();
         PlayHitVFX(target.transform.position);
         
+        SoundManager.PlaySound(SoundType.Scratch,0f, 1.2f);
+        SoundManager.PlaySound(SoundType.Nope,0.6f, 1f);
+        SoundManager.PlaySound(SoundType.Punch,0.2f, .3f);
+
         CharacterMover targetMover = target.GetComponent<CharacterMover>();
         if (enableScreenShake && targetMover != null && targetMover.IsPlayer)
         {

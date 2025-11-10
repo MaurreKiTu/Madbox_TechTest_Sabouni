@@ -48,6 +48,8 @@ public abstract class Portal : MonoBehaviour
                     if (currency != null && currency.IsPlayer)
                     {
                         OnInsufficientFunds();
+                        SoundManager.PlaySound(SoundType.PortalNotEnough);
+
                     }
                     return;
                 }
@@ -57,7 +59,7 @@ public abstract class Portal : MonoBehaviour
                 if (currency.IsPlayer)
                 {
                     ShowCostIndicator(other.transform.position);
-                    
+                    SoundManager.PlaySound(SoundType.PortalBuy);
                     if (costUI != null)
                     {
                         costUI.FlashGreen();

@@ -37,9 +37,12 @@ public class MoneyCollectible : MonoBehaviour
         if (currency.IsPlayer)
         {
             CoinFlyManager.SpawnFlyingCoin(transform.position, moneyValue);
+            SoundManager.PlaySound(SoundType.CoinPickup, 0f, .3f);
+
         }
-        
+
         currency.AddCurrency(moneyValue);
+        
         
         PlayCollectFX();
         

@@ -184,6 +184,59 @@ MonoBehaviour:
   animationDuration: 1
   animationEase: 30
   offScreenYPosition: 1000
+--- !u!1 &34656228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34656229}
+  - component: {fileID: 34656230}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34656229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34656228}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1145186153}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &34656230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34656228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21aaa01c90a84243b0642ceb1cbbb01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinPickupSound: {fileID: 8300000, guid: 50d05fe8e23143d49864fd5e219cfc30, type: 3}
+  slowedSound: {fileID: 8300000, guid: c88f89f32a5a7e54aa18475ce8853fa6, type: 3}
+  punchSound: {fileID: 8300000, guid: a59a31151296b5b4194e2a9c25324126, type: 3}
+  portalBuySound: {fileID: 8300000, guid: 435f72655a507be409bff7779be39460, type: 3}
+  portalNotEnoughSound: {fileID: 8300000, guid: 51e15659eb57ecc40a5d21fdbcc0a12f, type: 3}
+  nopeSound: {fileID: 8300000, guid: f923deced9aff454889a224e99526532, type: 3}
+  scratchSound: {fileID: 8300000, guid: 0ec01839a44a9a044872506039c561ce, type: 3}
+  masterVolume: 1
+  sfxVolume: 1
 --- !u!1001 &41068760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3822,6 +3875,7 @@ Transform:
   - {fileID: 893360386}
   - {fileID: 563382337}
   - {fileID: 754044650}
+  - {fileID: 34656229}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1174745845
