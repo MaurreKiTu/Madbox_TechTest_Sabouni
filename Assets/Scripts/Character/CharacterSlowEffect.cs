@@ -26,14 +26,11 @@ public class CharacterSlowEffect : MonoBehaviour
     {
         if (_characterMover == null) return;
         
+        if (_isSlowed) return;
+        
         if (duration < 0)
         {
             duration = defaultSlowDuration;
-        }
-        
-        if (_slowCoroutine != null)
-        {
-            StopCoroutine(_slowCoroutine);
         }
         
         _slowCoroutine = StartCoroutine(SlowCoroutine(duration));

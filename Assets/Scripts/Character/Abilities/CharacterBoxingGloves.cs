@@ -15,6 +15,10 @@ public class CharacterBoxingGloves : CharacterAbility
     [SerializeField] private ParticleSystem[] hitVFX;
     [SerializeField] private ParticleSystem[] punchVFX;
     
+    [Header("Screen Shake")]
+    [SerializeField] private bool enableScreenShake = true;
+    [SerializeField] private ShakeIntensity punchShakeIntensity = ShakeIntensity.Medium;
+    
     private Animator _animator;
     private HashSet<CharacterMover> _hitCharacters = new HashSet<CharacterMover>();
 
@@ -124,6 +128,12 @@ public class CharacterBoxingGloves : CharacterAbility
         
         PlayPunchVFX();
         PlayHitVFX(target.transform.position);
+        
+        CharacterMover targetMover = target.GetComponent<CharacterMover>();
+        if (enableScreenShake && targetMover != null && targetMover.IsPlayer)
+        {
+            CameraManager.TriggerShake(punchShakeIntensity);
+        }
         
         CharacterDefeat defeat = target.GetComponent<CharacterDefeat>();
         if (defeat == null)

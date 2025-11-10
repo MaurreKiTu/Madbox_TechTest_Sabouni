@@ -9,23 +9,30 @@ public class SlowObstacle : MonoBehaviour
     [Header("VFX")]
     [SerializeField] private ParticleSystem hitFX;
     
+    [Header("Screen Shake")]
+    [SerializeField] private bool enableScreenShake = true;
+    [SerializeField] private ShakeIntensity shakeIntensity = ShakeIntensity.Light;
+    
     private void OnTriggerEnter(Collider other)
     {
         CharacterSlowEffect slowEffect = other.GetComponent<CharacterSlowEffect>();
         
         if (slowEffect != null)
         {
-            if (affectPlayerOnly)
+            CharacterMover mover = other.GetComponent<CharacterMover>();
+            bool isPlayer = mover != null && mover.IsPlayer;
+            
+            if (affectPlayerOnly && !isPlayer)
             {
-                CharacterMover mover = other.GetComponent<CharacterMover>();
-                if (mover == null || !mover.IsPlayer)
-                {
-                    return;
-                }
+                return;
+            }
+            
+            if (enableScreenShake && isPlayer)
+            {
+                CameraManager.TriggerShake(shakeIntensity);
             }
             
             slowEffect.ApplySlow(slowDuration);
-            
             PlayHitFX();
         }
     }

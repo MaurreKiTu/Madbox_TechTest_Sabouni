@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: cost
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 2941161708052674399, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
+      propertyPath: duration
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3329599651517867383, guid: 765e8c6303a2d384db0eed3aacfcf3ea, type: 3}
       propertyPath: m_Name
       value: Portal_Speed

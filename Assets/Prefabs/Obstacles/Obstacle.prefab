@@ -68,9 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d40d3f1a58bc954b8dd6d38a4456f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowDuration: 1
+  slowDuration: 0.8
   affectPlayerOnly: 0
   hitFX: {fileID: 5355996743439324409}
+  enableScreenShake: 1
+  shakeIntensity: 0.8
 --- !u!1001 &8953102583247927870
 PrefabInstance:
   m_ObjectHideFlags: 0
