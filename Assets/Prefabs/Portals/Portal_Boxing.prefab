@@ -97,4 +97,4 @@ MonoBehaviour:
   insufficientFundsFX: {fileID: 0}
   costIndicatorPrefab: {fileID: 1560332299848948686, guid: 7b5f25556605584488a140db687ed206, type: 3}
   uiCanvas: {fileID: 0}
-  duration: 5
+  duration: 20
