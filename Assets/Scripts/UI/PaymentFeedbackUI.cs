@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class PortalCostIndicatorUI : MonoBehaviour
+public class PaymentFeedbackUI : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI costText;

@@ -4557,10 +4557,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 662579460}
     m_Modifications:
     - target: {fileID: 2410052956173678669, guid: 82b953a0ade61e44eae500c74bc46082, type: 3}
-      propertyPath: cost
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 2410052956173678669, guid: 82b953a0ade61e44eae500c74bc46082, type: 3}
       propertyPath: uiCanvas
       value: 
       objectReference: {fileID: 2119558353}
@@ -4980,10 +4976,6 @@ PrefabInstance:
     - target: {fileID: 8684777183499204872, guid: 75e7413fceaf56d4c9d5acdc975365a2, type: 3}
       propertyPath: m_Name
       value: Portal_Speed
-      objectReference: {fileID: 0}
-    - target: {fileID: 9106983327791475488, guid: 75e7413fceaf56d4c9d5acdc975365a2, type: 3}
-      propertyPath: cost
-      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 9106983327791475488, guid: 75e7413fceaf56d4c9d5acdc975365a2, type: 3}
       propertyPath: uiCanvas

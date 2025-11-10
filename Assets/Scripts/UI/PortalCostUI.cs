@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
 
 public class PortalCostUI : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public class PortalCostUI : MonoBehaviour
     [Header("Text Settings")]
     [SerializeField] private string costFormat = "${0}";
     [SerializeField] private string freeText = "FREE";
+    
+    [Header("Flash Settings")]
+    [SerializeField] private Color insufficientFundsColor = Color.red;
+    [SerializeField] private Color paymentSuccessColor = Color.green;
+    [SerializeField] private float flashDuration = 0.5f;
+    
+    private Color _originalColor;
+    private Coroutine _flashCoroutine;
 
     private void Awake()
     {
@@ -23,6 +32,11 @@ public class PortalCostUI : MonoBehaviour
         if (portal == null)
         {
             portal = GetComponentInParent<Portal>();
+        }
+        
+        if (costText != null)
+        {
+            _originalColor = costText.color;
         }
     }
 
@@ -45,6 +59,36 @@ public class PortalCostUI : MonoBehaviour
         {
             costText.text = string.Format(costFormat, portalCost);
         }
+    }
+    
+    public void FlashRed()
+    {
+        Flash(insufficientFundsColor);
+    }
+    
+    public void FlashGreen()
+    {
+        Flash(paymentSuccessColor);
+    }
+    
+    private void Flash(Color color)
+    {
+        if (costText == null) return;
+        
+        if (_flashCoroutine != null)
+        {
+            StopCoroutine(_flashCoroutine);
+        }
+        
+        _flashCoroutine = StartCoroutine(FlashCoroutine(color));
+    }
+    
+    private IEnumerator FlashCoroutine(Color flashColor)
+    {
+        costText.color = flashColor;
+        yield return new WaitForSeconds(flashDuration);
+        costText.color = _originalColor;
+        _flashCoroutine = null;
     }
 }
 

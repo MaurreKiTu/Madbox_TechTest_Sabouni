@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class Portal : MonoBehaviour
 {
@@ -10,13 +11,26 @@ public abstract class Portal : MonoBehaviour
     [SerializeField] private ParticleSystem activationFX;
     [SerializeField] private ParticleSystem insufficientFundsFX;
     
-    [Header("Cost Indicator")]
-    [SerializeField] private GameObject costIndicatorPrefab;
+    [Header("UI References")]
+    [SerializeField] private PortalCostUI costUI;
+    [SerializeField] private GameObject paymentFeedbackPrefab;
     [SerializeField] private Canvas uiCanvas;
     
+    [Header("Shake Settings")]
+    [SerializeField] private float shakeIntensity = 0.3f;
+    [SerializeField] private float shakeDuration = 0.5f;
+    [SerializeField] private int shakeVibrations = 10;
+    
     private bool _hasBeenUsed;
+    private Vector3 _originalPosition;
+    private Coroutine _shakeCoroutine;
 
     public int Cost => cost;
+
+    private void Awake()
+    {
+        _originalPosition = transform.localPosition;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,7 +45,10 @@ public abstract class Portal : MonoBehaviour
             {
                 if (currency == null || !currency.HasEnoughCurrency(cost))
                 {
-                    OnInsufficientFunds();
+                    if (currency != null && currency.IsPlayer)
+                    {
+                        OnInsufficientFunds();
+                    }
                     return;
                 }
                 
@@ -40,6 +57,11 @@ public abstract class Portal : MonoBehaviour
                 if (currency.IsPlayer)
                 {
                     ShowCostIndicator(other.transform.position);
+                    
+                    if (costUI != null)
+                    {
+                        costUI.FlashGreen();
+                    }
                 }
             }
             
@@ -69,11 +91,23 @@ public abstract class Portal : MonoBehaviour
         {
             insufficientFundsFX.Play();
         }
+        
+        if (_shakeCoroutine != null)
+        {
+            StopCoroutine(_shakeCoroutine);
+            transform.localPosition = _originalPosition;
+        }
+        _shakeCoroutine = StartCoroutine(ShakePortal());
+        
+        if (costUI != null)
+        {
+            costUI.FlashRed();
+        }
     }
 
     private void ShowCostIndicator(Vector3 playerPosition)
     {
-        if (costIndicatorPrefab == null) return;
+        if (paymentFeedbackPrefab == null) return;
         
         if (uiCanvas == null)
         {
@@ -82,13 +116,33 @@ public abstract class Portal : MonoBehaviour
         
         if (uiCanvas == null) return;
         
-        GameObject indicatorObj = Instantiate(costIndicatorPrefab, uiCanvas.transform);
-        PortalCostIndicatorUI indicator = indicatorObj.GetComponent<PortalCostIndicatorUI>();
+        GameObject feedbackObj = Instantiate(paymentFeedbackPrefab, uiCanvas.transform);
+        PaymentFeedbackUI feedback = feedbackObj.GetComponent<PaymentFeedbackUI>();
         
-        if (indicator != null)
+        if (feedback != null)
         {
-            indicator.ShowCost(playerPosition, cost);
+            feedback.ShowCost(playerPosition, cost);
         }
+    }
+    
+    private IEnumerator ShakePortal()
+    {
+        float elapsed = 0f;
+        
+        while (elapsed < shakeDuration)
+        {
+            float progress = elapsed / shakeDuration;
+            float damping = 1f - progress;
+            
+            float offsetX = Mathf.Sin(elapsed * shakeVibrations * Mathf.PI * 2) * shakeIntensity * damping;
+            transform.localPosition = _originalPosition + new Vector3(offsetX, 0, 0);
+            
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        
+        transform.localPosition = _originalPosition;
+        _shakeCoroutine = null;
     }
 
     public void ResetPortal()
