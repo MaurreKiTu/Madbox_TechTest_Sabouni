@@ -12,6 +12,13 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] private Ease animationEase = Ease.OutBounce;
     [SerializeField] private float offScreenYPosition = 1000f;
     
+    [Header("Game UI to Hide")]
+    [SerializeField] private CurrencyUI currencyUI;
+    
+    [Header("Hide Game UI Settings")]
+    [SerializeField] private float gameUIHideDuration = 0.5f;
+    [SerializeField] private Ease gameUIHideEase = Ease.InBack;
+    
     private RectTransform _rectTransform;
     private Vector2 _targetPosition;
     private bool _isShowing = false;
@@ -41,11 +48,21 @@ public class GameOverUI : MonoBehaviour
         
         _isShowing = true;
         
+        HideGameUI();
+        
         gameObject.SetActive(true);
         
         _rectTransform.DOAnchorPosY(_targetPosition.y, animationDuration)
             .SetEase(animationEase)
             .SetUpdate(true);
+    }
+
+    private void HideGameUI()
+    {
+        if (currencyUI != null)
+        {
+            currencyUI.HideToTop();
+        }
     }
 
     public void HideGameOver()
@@ -71,7 +88,11 @@ public class GameOverUI : MonoBehaviour
             gameManager.OnPlayerDefeated.RemoveListener(ShowGameOver);
         }
         
-        _rectTransform.DOKill();
+        if (_rectTransform != null)
+        {
+            _rectTransform.DOKill();
+        }
+        
     }
 }
 

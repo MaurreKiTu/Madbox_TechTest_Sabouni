@@ -184,6 +184,9 @@ MonoBehaviour:
   animationDuration: 1
   animationEase: 30
   offScreenYPosition: 1000
+  currencyUI: {fileID: 398326932}
+  gameUIHideDuration: 0.5
+  gameUIHideEase: 26
 --- !u!1 &34656228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,8 +1576,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca404a87b77c2d7458e3e85caad985a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currencyText: {fileID: 0}
+  currencyText: {fileID: 282289613}
   currencyFormat: '{0}'
+  hideAnimationDuration: 0.5
+  hideAnimationEase: 26
 --- !u!1001 &402591525
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2747,7 +2752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 852277127398752463, guid: 6c064513aa7cae142b65066943c8fdbd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8377680040844940510, guid: 6c064513aa7cae142b65066943c8fdbd, type: 3}
       propertyPath: m_LocalScale.x
